@@ -3,6 +3,9 @@ package com.z0o0a.pushalarmtest
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.media.Ringtone
+import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
@@ -10,8 +13,6 @@ import androidx.annotation.RequiresApi
 
 
 class AlarmReceiver : BroadcastReceiver() {
-
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onReceive(p0: Context?, p1: Intent?) {
         Log.d("Alarm Bell", "알람 발새앵")
         Toast.makeText(p0, "알람 발생", Toast.LENGTH_SHORT).show()

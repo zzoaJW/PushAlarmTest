@@ -5,6 +5,9 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.media.Ringtone
+import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,13 +33,13 @@ class MainActivity : AppCompatActivity() {
     private var alarmMgr: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
 
-
     @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
 
         binding.btnCreateAlarm.setOnClickListener {
 //            setValues()
@@ -47,14 +50,12 @@ class MainActivity : AppCompatActivity() {
                 PendingIntent.getBroadcast(this, 0, intent, 0)
             }
 
-
-
-
-//            alarmMgr?.set(
-//                AlarmManager.ELAPSED_REALTIME_WAKEUP,
-//                SystemClock.elapsedRealtime() + 5*1000,
-//                alarmIntent
-//            )
+            val triggerTime = SystemClock.elapsedRealtime() + 5*1000
+            alarmMgr?.setExactAndAllowWhileIdle(
+                AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                triggerTime,
+                alarmIntent
+            )
         }
 
 
