@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private var alarmMgr: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
 
+
     @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,23 +39,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.btnCreateAlarm.setOnClickListener {
-            setValues()
+//            setValues()
 
-            val alarmManager =
-                this.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
-            val pendingIntent =
-                PendingIntent.getService(this, requestId, intent,
-                    PendingIntent.FLAG_NO_CREATE)
-            if (pendingIntent != null && alarmManager != null) {
-                alarmManager.cancel(pendingIntent)
+
+            alarmMgr = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmIntent = Intent(this, AlarmReceiver::class.java).let { intent ->
+                PendingIntent.getBroadcast(this, 0, intent, 0)
             }
 
-            alarmMgr?.setInexactRepeating(
-                AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR,
-                AlarmManager.INTERVAL_HALF_HOUR,
-                alarmIntent
-            )
+
+
+
+//            alarmMgr?.set(
+//                AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//                SystemClock.elapsedRealtime() + 5*1000,
+//                alarmIntent
+//            )
         }
 
 
