@@ -5,6 +5,8 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32119445800781266" />
         <entry key="app/src/main/res/layout/alarm_click.xml" value="0.27310028076171877" />
+        <entry key="app/src/main/res/layout/you_arrive.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/you_ok.xml" value="0.1" />
       </map>
     </option>
   </component>

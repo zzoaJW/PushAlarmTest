@@ -2,6 +2,8 @@ package com.z0o0a.pushalarmtest
 
 import android.annotation.SuppressLint
 import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -28,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     private var currentTime = "-"
     private var alarmTime = "-"
 
-    val requestId = 2000
 
     private var alarmMgr: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        createNotificationChannel()
 
         binding.btnCreateAlarm.setOnClickListener {
 //            setValues()
@@ -50,12 +52,18 @@ class MainActivity : AppCompatActivity() {
                 PendingIntent.getBroadcast(this, 0, intent, 0)
             }
 
+
+//            val triggerTime = SystemClock.elapsedRealtime() + binding.inputTime.text.toString().toLong()*1000
             val triggerTime = SystemClock.elapsedRealtime() + 5*1000
+
             alarmMgr?.setExactAndAllowWhileIdle(
                 AlarmManager.ELAPSED_REALTIME_WAKEUP,
                 triggerTime,
                 alarmIntent
             )
+
+            intent = Intent(this, AlarmClick::class.java)
+            startActivity(intent)
         }
 
 
@@ -109,4 +117,24 @@ class MainActivity : AppCompatActivity() {
 
         return hourStr + ':' + minStr + ':' + secondStr
     }
+
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val name = getString(R.string.channel_name)
+//            val descriptionText = getString(R.string.channel_description)
+            val name = "test_channel_name"
+            val descriptionText = "test_channel_description_text"
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel("2000", name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
 }

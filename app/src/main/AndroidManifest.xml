@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.z0o0a.pushalarmtest">
 
+
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
@@ -24,6 +26,9 @@
         </activity>
         <receiver android:name=".AlarmReceiver"/>
         <activity android:name=".AlarmClick"/>
+        <activity android:name="YouOk"/>
+        <activity android:name=".YouArrive"/>
+        <service android:name=".RingRing"/>
     </application>
 
 </manifest>
