@@ -28,11 +28,7 @@ class AlarmReceiver : BroadcastReceiver() {
         Log.d("Alarm Bell", "알람 발새앵")
         Toast.makeText(p0, "알람 발생", Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(p0, YouOk::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        p0!!.startActivity(intent)
-
-//        val notificationIntent = Intent(p0, AlarmClick::class.java).apply {
+//        val notificationIntent = Intent(p0, YouOk::class.java).apply {
 //            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 //        }
 //        val pendingIntent: PendingIntent = PendingIntent.getActivity(p0, 0, notificationIntent, 0)

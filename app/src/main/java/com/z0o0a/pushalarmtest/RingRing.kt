@@ -17,11 +17,21 @@ class RingRing: Service() {
     private var ringtone : Ringtone? = null
     private var vibrator : Vibrator? = null
 
+    companion object{
+        private var isRunning = false
+
+        fun isRunning():Boolean{
+            return isRunning
+        }
+    }
+
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        isRunning = true
+
         defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         ringtone = RingtoneManager.getRingtone(this, defaultSound)
 
@@ -34,6 +44,8 @@ class RingRing: Service() {
     }
 
     override fun onDestroy() {
+        isRunning = false
+
         ringtone!!.stop()
         vibrator!!.cancel()
     }

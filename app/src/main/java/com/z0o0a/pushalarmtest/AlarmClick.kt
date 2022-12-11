@@ -3,6 +3,7 @@ package com.z0o0a.pushalarmtest
 import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.media.Ringtone
 import android.media.RingtoneManager
 import android.net.Uri
@@ -27,11 +28,14 @@ class AlarmClick  : AppCompatActivity() {
 
 
     }
-//
+
+//    @SuppressLint("NewApi")
 //    override fun onResume() {
 //        super.onResume()
-//        val notification = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 //
-//        notification.cancelAll()
+//        if (RingRing.isRunning()){
+//            val intent = Intent(this, YouOk::class.java)
+//            startActivity(intent)
+//        }
 //    }
 }
