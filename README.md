@@ -2,4 +2,4 @@
 
 [개인 스터디]  
 Android Studio (Kotlin)  
-Notification, AlarmManager, Service 
+주요 라이브러리 및 기술 : Notification, AlarmManager, Service 
